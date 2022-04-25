@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-12 mt-5">
-        <div class="card">
+    <div class="col-12 mt-4">
+        <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title text-bold">Categorias|Listado</h3>
-                <div class="card-tools">
+                <h3 class="card-title text-bold">Categorias |Listado</h3>
+                <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
                             placeholder="Búsqueda por nombre">
@@ -13,7 +13,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="m-4">
+                    <div class="mt-2">
                         <a href="{{ route('categories.create') }}" class="btn btn-primary btn-sm float-right">
                             <i class="fas fa-plus"></i>
                             Agregar nuevo
@@ -35,7 +35,7 @@
                         <tr>
 
                             @foreach ($categories as $category)
-                        
+
                                 <td>{{ $category->name }}</td>
                                 <td>
                                     <a href="{{ route('categories.edit', $category->id) }}"

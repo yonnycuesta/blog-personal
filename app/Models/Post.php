@@ -17,7 +17,7 @@ class Post extends Model
         'category_id',
     ];
 
-    // Relación 
+    // Relación
 
     /**
      * Obtener la categoría del post.
@@ -26,5 +26,32 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * Obtener las etiquetas del post.
+     */
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
+    /**
+     * Obtener los recursos del post.
+     */
+
+    public function resources()
+    {
+        return $this->hasMany(Resource::class);
+    }
+
+    /**
+     * Obtener los modulos del post.
+     */
+
+    public function modules()
+    {
+        return $this->hasMany(Module::class);
     }
 }

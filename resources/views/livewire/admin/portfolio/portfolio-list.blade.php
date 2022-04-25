@@ -2,7 +2,7 @@
     <div class="col-12 mt-4">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title text-bold">Publicaciónes |Listado</h3>
+                <h3 class="card-title text-bold">Portafolios |Listado</h3>
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">
+                        <a href="{{ route('portfolios.create') }}" class="btn btn-primary btn-sm float-right">
                             <i class="fas fa-plus"></i>
                             Agregar nuevo
                         </a>
@@ -28,30 +28,23 @@
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Categoría</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Fecha y hora de publicación</th>
+                            <th scope="col">Fecha de creación</th>
                             <th scope="col">Imagen</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($posts as $post)
-                                <td>{{ $post->title }}</td>
+                            @foreach ($portfolios as $portfolio)
+                                <td>{{ $portfolio->title }}</td>
                                 <td>
-                                    {{ $post->category->name ?? '' }}
+                                    {{ $portfolio->category->name ?? '' }}
                                 </td>
+
+                                <td>{{ $portfolio->date_created }}</td>
                                 <td>
-                                    @php
-                                        $s = $post->description;
-                                        $s = substr($s, 0, 50);
-                                        echo $s . '...';
-                                    @endphp
-                                </td>
-                                <td>{{ $post->datetime_created }}</td>
-                                <td>
-                                    @if ($post->photo)
-                                        <img src="{{ asset($post->photo) }}" alt="{{ $post->title }}"
+                                    @if ($portfolio->photo)
+                                        <img src="{{ asset($portfolio->photo) }}" alt="{{ $portfolio->title }}"
                                             class="img-fluid" style="max-width: 100px;">
                                     @else
                                         <span class="badge badge-primary">No hay imagen</span>
@@ -60,17 +53,19 @@
                                 </td>
 
                                 <td>
-                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-info">
+                                    <a href="{{ route('portfolios.show', $portfolio->id) }}"
+                                        class="btn btn-sm btn-info">
                                         <i class="fas fa-eye"></i>
                                         Detalles
                                     </a>
 
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ route('portfolios.edit', $portfolio->id) }}"
+                                        class="btn btn-sm btn-warning">
                                         <i class="fas fa-pencil-alt"></i>
                                         Editar
                                     </a>
 
-                                    <button type="button" wire:click="confirmDelete({{ $post->id }})"
+                                    <button type="button" wire:click="confirmDelete({{ $portfolio->id }})"
                                         class="btn btn-sm btn-danger">
                                         <i class="fas fa-trash"></i>
                                         Eliminar
@@ -83,7 +78,7 @@
             </div>
 
             <div class="card-footer">
-                {{ $posts->links() }}
+                {{ $portfolios->links() }}
             </div>
         </div>
 

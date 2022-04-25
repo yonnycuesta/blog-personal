@@ -21,4 +21,13 @@ class Category extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    /**
+     * Obtener los portafolios de la categoría.
+     */
+
+    public function portfolios()
+    {
+        return $this->hasMany(Portfolio::class);
+    }
 }

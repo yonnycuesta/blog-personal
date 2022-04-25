@@ -2,11 +2,11 @@
     <div class="col-12 mt-4">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title text-bold">Publicaciónes |Listado</h3>
+                <h3 class="card-title text-bold">Recursos |Listado</h3>
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Titulo, categoría, descripción o fecha">
+                            placeholder="Nombre, url o publicación">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">
+                        <a href="{{ route('resources.create') }}" class="btn btn-primary btn-sm float-right">
                             <i class="fas fa-plus"></i>
                             Agregar nuevo
                         </a>
@@ -27,50 +27,28 @@
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Categoría</th>
-                            <th scope="col">Descripción</th>
-                            <th scope="col">Fecha y hora de publicación</th>
-                            <th scope="col">Imagen</th>
+                            <th scope="col">Url o Enlace</th>
+                            <th scope="col">Nombre de la Publicación</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($posts as $post)
-                                <td>{{ $post->title }}</td>
+                            @foreach ($resources as $resource)
+                                <td>{{ $resource->name }}</td>
                                 <td>
-                                    {{ $post->category->name ?? '' }}
+                                    {{ $resource->url }}
                                 </td>
                                 <td>
-                                    @php
-                                        $s = $post->description;
-                                        $s = substr($s, 0, 50);
-                                        echo $s . '...';
-                                    @endphp
+                                    {{ $resource->post->title ?? 'Ninguna asociada' }}
                                 </td>
-                                <td>{{ $post->datetime_created }}</td>
                                 <td>
-                                    @if ($post->photo)
-                                        <img src="{{ asset($post->photo) }}" alt="{{ $post->title }}"
-                                            class="img-fluid" style="max-width: 100px;">
-                                    @else
-                                        <span class="badge badge-primary">No hay imagen</span>
-                                    @endif
-
-                                </td>
-
-                                <td>
-                                    <a href="{{ route('posts.show', $post->id) }}" class="btn btn-sm btn-info">
-                                        <i class="fas fa-eye"></i>
-                                        Detalles
-                                    </a>
-
-                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ route('resources.edit', $resource->id) }}" class="btn btn-sm btn-warning">
                                         <i class="fas fa-pencil-alt"></i>
                                         Editar
                                     </a>
 
-                                    <button type="button" wire:click="confirmDelete({{ $post->id }})"
+                                    <button type="button" wire:click="confirmDelete({{ $resource->id }})"
                                         class="btn btn-sm btn-danger">
                                         <i class="fas fa-trash"></i>
                                         Eliminar
@@ -83,7 +61,7 @@
             </div>
 
             <div class="card-footer">
-                {{ $posts->links() }}
+                {{ $resources->links() }}
             </div>
         </div>
 
@@ -101,7 +79,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, quiero eliminarla!',
+                confirmButtonText: 'Sí, quiero eliminarlo!',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -117,3 +95,4 @@
         })
     </script>
 @endsection
+

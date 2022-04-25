@@ -15,4 +15,15 @@ class Module extends Model
         'content',
         'post_id',
     ];
+
+    // Relaciones
+
+    /**
+     * Obtener el post del módulo.
+     */
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

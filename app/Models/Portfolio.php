@@ -18,4 +18,14 @@ class Portfolio extends Model
         'date_created',
         'category_id',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }

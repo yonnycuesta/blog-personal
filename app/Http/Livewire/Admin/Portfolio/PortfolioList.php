@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Post;
+namespace App\Http\Livewire\Admin\Portfolio;
 
-use App\Models\Post;
+use App\Models\Portfolio;
 use Livewire\Component;
 use Livewire\WithPagination;
 
-class PostList extends Component
+class PortfolioList extends Component
 {
     // Librerias
     use WithPagination;
@@ -25,11 +25,12 @@ class PostList extends Component
     public function render()
     {
 
-        return view('livewire.admin.post.post-list', [
-            'posts' => Post::when($this->search, function ($query, $search) {
+        return view('livewire.admin.portfolio.portfolio-list', [
+            'portfolios' => Portfolio::when($this->search, function ($query, $search) {
                 return $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('description', 'like', '%' . $this->search . '%')
-                    ->orWhere('datetime_created', 'like', '%' . $this->search . '%')
+                    ->orWhere('portf_client', 'like', '%' . $this->search . '%')
+                    ->orWhere('date_created', 'like', '%' . $this->search . '%')
                     ->orWhereHas('category', function ($query) use ($search) {
                         $query->where('name', 'like', '%' . $search . '%');
                     });
@@ -49,27 +50,27 @@ class PostList extends Component
 
     public function delete($id)
     {
-        $post = Post::find($id);
+        $portfolio = Portfolio::find($id);
         // Eliminar la imagen de la carpeta public si existe asociada al registro
-        if ($post->photo) {
-            unlink($post->photo);
+        if ($portfolio->photo) {
+            unlink($portfolio->photo);
         }
-        $post->delete();
+        $portfolio->delete();
 
         $this->dispatchBrowserEvent('toastr-delete', [
-            'title' => 'Publicación eliminada',
-            'message' => '¡La publicación ha sido eliminado correctamente!',
+            'title' => 'Proyecto eliminado',
+            'message' => '¡El proyecto ha sido eliminado correctamente!',
             'status' => 'success',
             'timer' => 3000,
         ]);
     }
 
     // Detalles del post
-    public function show(Post $post)
+    public function show(Portfolio $portfolio)
     {
-        $this->post = $post;
-        return view('livewire.admin.post.post-show', [
-            'post' => $post,
+        $this->portfolio = $portfolio;
+        return view('livewire.admin.portfolio.portfolio-show', [
+            'portfolio' => $portfolio,
         ]);
     }
 }

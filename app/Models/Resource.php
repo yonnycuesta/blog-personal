@@ -14,4 +14,15 @@ class Resource extends Model
         'url',
         'post_id',
     ];
+
+    // Relaciones
+
+    /**
+     * Obtener el post del recurso.
+     */
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

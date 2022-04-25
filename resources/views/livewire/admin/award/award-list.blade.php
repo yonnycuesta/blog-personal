@@ -1,9 +1,9 @@
 <div class="row">
-    <div class="col-12 mt-5">
-        <div class="card">
+    <div class="col-12 mt-4">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title text-bold">Logros|Listado</h3>
-                <div class="card-tools">
+                <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
                             placeholder="Nombre o cantidad">
@@ -13,7 +13,7 @@
                             </button>
                         </div>
                     </div>
-                    <div class="m-4">
+                    <div class="mt-2">
                         <a href="{{ route('awards.create') }}" class="btn btn-primary btn-sm float-right">
                             <i class="fas fa-plus"></i>
                             Agregar nuevo

@@ -62,6 +62,38 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('portfolios.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                        Portfolios
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('tags.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                        Tags
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('resources.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                        Resources
+                    </p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('modules.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                        Modules
+                    </p>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>
