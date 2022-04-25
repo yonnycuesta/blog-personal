@@ -34,12 +34,7 @@ class ServiceEdit extends Component
         'service.description.required' => 'La descripción es requerida',
         'service.description.min' => 'La descripción debe tener al menos 10 caracteres',
     ];
-    // Limpiar el formulario
-
-    public function limpiarCampos()
-    {
-        $this->reset();
-    }
+   
     // Validación en tiempo real
     public function updated($field)
     {

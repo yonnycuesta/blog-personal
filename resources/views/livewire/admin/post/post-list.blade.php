@@ -2,11 +2,11 @@
     <div class="col-12 mt-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title text-bold">Testimonios| Listado</h3>
+                <h3 class="card-title text-bold">Publicaciónes |Listado</h3>
                 <div class="card-tools">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Nombre, cargo o descripción">
+                            placeholder="Titulo, categoría, descripción o fecha">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="m-4">
-                        <a href="{{ route('testimonials.create') }}" class="btn btn-primary btn-sm float-right">
+                        <a href="{{ route('posts.create') }}" class="btn btn-primary btn-sm float-right">
                             <i class="fas fa-plus"></i>
                             Agregar nuevo
                         </a>
@@ -26,42 +26,45 @@
                 <table class="table table-hover text-nowrap">
                     <thead>
                         <tr>
-
-                            <th scope="col">Nombre del cliente</th>
-                            <th scope="col">Cargo o Profesión</th>
-                            <th scope="col">Comentario</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Categoría</th>
+                            <th scope="col">Descripción</th>
+                            <th scope="col">Fecha y hora de publicación</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
+                            @foreach ($posts as $post)
+                                <td>{{ $post->title }}</td>
+                                <td>
+                                    {{ $post->category->name ?? '' }}
+                                </td>
+                                <td>{{ $post->description }}</td>
+                                <td>{{ $post->datetime_created }}</td>
+                                <td>
+                                    @if ($post->photo)
+                                        <img src="{{ asset($post->photo) }}" alt="{{ $post->title }}"
+                                            class="img-fluid" style="max-width: 100px;">
+                                    @else
+                                        <span class="badge badge-primary">No hay imagen</span>
+                                    @endif
 
-                            @foreach ($testimonials as $testimonial)
-                                <td>{{ $testimonial->name }}</td>
-                                <td>
-                                    {{ $testimonial->designation }}
                                 </td>
+
                                 <td>
-                                    @php
-                                        $s = $testimonial->description;
-                                        $s = substr($s, 0, 50);
-                                        echo $s . '..';
-                                    @endphp
-                                </td>
-                                <td>
-                                    <a href="{{ route('testimonials.show', $testimonial->id) }}"
-                                        class="btn btn-sm btn-info">
+                                    <a href="" class="btn btn-sm btn-info">
                                         <i class="fas fa-eye"></i>
                                         Detalles
                                     </a>
 
-                                    <a href="{{ route('testimonials.edit', $testimonial->id) }}"
-                                        class="btn btn-sm btn-warning">
+                                    <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-warning">
                                         <i class="fas fa-pencil-alt"></i>
                                         Editar
                                     </a>
 
-                                    <button type="button" wire:click="confirmDelete({{ $testimonial->id }})"
+                                    <button type="button" wire:click="confirmDelete({{ $post->id }})"
                                         class="btn btn-sm btn-danger">
                                         <i class="fas fa-trash"></i>
                                         Eliminar
@@ -74,7 +77,7 @@
             </div>
 
             <div class="card-footer">
-                {{ $testimonials->links() }}
+                {{ $posts->links() }}
             </div>
         </div>
 
@@ -92,7 +95,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, quiero eliminarlo!',
+                confirmButtonText: 'Sí, quiero eliminarla!',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -101,7 +104,6 @@
             })
         })
     </script>
-
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-delete', event => {

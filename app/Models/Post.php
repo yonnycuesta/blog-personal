@@ -16,4 +16,15 @@ class Post extends Model
         'datetime_created',
         'category_id',
     ];
+
+    // Relación 
+
+    /**
+     * Obtener la categoría del post.
+     */
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

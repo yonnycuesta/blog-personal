@@ -54,6 +54,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('posts.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                        Posts
+                    </p>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

@@ -10,4 +10,15 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    // Relación
+
+    /**
+     * Obtener los posts de la categoría.
+     */
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

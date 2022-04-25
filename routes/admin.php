@@ -10,10 +10,14 @@ use App\Http\Livewire\Admin\Award\AwardList;
 use App\Http\Livewire\Admin\CategoryCreate;
 use App\Http\Livewire\Admin\CategoryEdit;
 use App\Http\Livewire\Admin\CategoryList;
+use App\Http\Livewire\Admin\Post\PostCreate;
+use App\Http\Livewire\Admin\Post\PostEdit;
+use App\Http\Livewire\Admin\Post\PostList;
 use App\Http\Livewire\Admin\Service\ServiceCreate;
 use App\Http\Livewire\Admin\Service\ServiceEdit;
 use App\Http\Livewire\Admin\Service\ServiceList;
 use App\Http\Livewire\Admin\Testimonial\TestimonialCreate;
+use App\Http\Livewire\Admin\Testimonial\TestimonialEdit;
 use App\Http\Livewire\Admin\Testimonial\TestimonialList;
 use Illuminate\Support\Facades\Route;
 
@@ -42,4 +46,10 @@ Route::get('services/show/{service}', [ServiceList::class, 'show'])->name('servi
 // Testimonios
 Route::get('testimonials', TestimonialList::class)->name('testimonials.index');
 Route::get('testimonials/create', TestimonialCreate::class)->name('testimonials.create');
+Route::get('testimonals/edit/{testimonial}', TestimonialEdit::class)->name('testimonials.edit');
+Route::get('testimonals/show/{testimonial}', [TestimonialList::class, 'show'])->name('testimonials.show');
 
+// Publicaciones
+Route::get('posts', PostList::class,)->name('posts.index');
+Route::get('posts/create', PostCreate::class,)->name('posts.create');
+Route::get('posts/edit/{post}', PostEdit::class,)->name('posts.edit');
