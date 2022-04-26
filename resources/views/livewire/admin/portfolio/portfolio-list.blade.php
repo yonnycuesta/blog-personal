@@ -6,7 +6,7 @@
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Titulo, categoría, descripción o fecha">
+                            placeholder="Buscar por titulo, categoria, descripción, nombre del cliente o fecha de creación del proyecto.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -27,7 +27,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Categoría</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col">Fecha de creación</th>
                             <th scope="col">Imagen</th>
                             <th scope="col">Acciones</th>

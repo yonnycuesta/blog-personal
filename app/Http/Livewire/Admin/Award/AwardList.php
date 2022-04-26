@@ -30,7 +30,7 @@ class AwardList extends Component
                 return $query->where('title', 'like', '%' . $this->search . '%')
                     ->orWhere('quantity', 'like', '%' . $this->search . '%')
                     ->OrderBy('id', 'desc');
-            })->paginate($this->perPage),
+            })->paginate($this->perPage)->withQueryString(),
         ])->extends('layouts.app')->section('content');
     }
 

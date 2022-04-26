@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h1 class="card-title">Actualizar testimonio</h1>
-                    <a href="{{ route('testimonials.index') }}" class="btn btn-primary float-right">
+                    <a href="{{ route('testimonials.index') }}" class="btn btn-primary float-right bg-info border-0">
                         <i class="fas fa-arrow-left"></i>
                         <span>Regresar</span>
                     </a>

@@ -2,11 +2,11 @@
     <div class="col-12 mt-4">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title text-bold">Logros|Listado</h3>
+                <h3 class="card-title text-bold">Logros |Listado</h3>
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Nombre o cantidad">
+                            placeholder="Buscar por el nombre o cantidad del logro.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>

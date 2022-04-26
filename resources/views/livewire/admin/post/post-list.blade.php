@@ -6,7 +6,7 @@
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Titulo, categoría, descripción o fecha">
+                            placeholder="Buscar por titulo, categoria, descripción o fecha y hora de la publicación.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -29,7 +29,6 @@
                             <th scope="col">Nombre</th>
                             <th scope="col">Categoría</th>
                             <th scope="col">Descripción</th>
-                            <th scope="col">Fecha y hora de publicación</th>
                             <th scope="col">Imagen</th>
                             <th scope="col">Acciones</th>
                         </tr>
@@ -48,7 +47,7 @@
                                         echo $s . '...';
                                     @endphp
                                 </td>
-                                <td>{{ $post->datetime_created }}</td>
+                            
                                 <td>
                                     @if ($post->photo)
                                         <img src="{{ asset($post->photo) }}" alt="{{ $post->title }}"

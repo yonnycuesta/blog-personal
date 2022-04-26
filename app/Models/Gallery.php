@@ -13,4 +13,15 @@ class Gallery extends Model
         'photo',
         'post_id',
     ];
+
+    // Relación
+
+    /**
+     * Obtener el post de la galería.
+     */
+
+    public function post()
+    {
+        return $this->belongsTo(Post::class);
+    }
 }

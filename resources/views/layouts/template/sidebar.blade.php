@@ -94,6 +94,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('galleries.index') }}" class="nav-link">
+                    <i class="nav-icon fas fa-award"></i>
+                    <p>
+                        Galleries
+                    </p>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

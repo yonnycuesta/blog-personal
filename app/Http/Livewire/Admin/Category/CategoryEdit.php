@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
 use Livewire\Component;
@@ -15,6 +15,13 @@ class CategoryEdit extends Component
         $this->category = $category;
     }
 
+    public function render()
+    {
+        return view('livewire.admin.category.category-edit')
+            ->extends('layouts.app')
+            ->section('content');
+    }
+
 
     protected $rules = [
         'category.name' => 'required|min:3|max:25',
@@ -26,23 +33,27 @@ class CategoryEdit extends Component
         'category.name.max' => 'El nombre debe tener máximo 25 caracteres',
     ];
 
+     // Validación en tiempo real
+     public function updated($field)
+     {
+         $this->validateOnly($field, $this->rules, $this->messages);
+     }
+
+
     public function update()
     {
-        $this->validate();
+        $this->validate( $this->rules, $this->messages );
 
         $this->category->update([
             'name' => $this->category->name,
         ]);
 
-        //$this->emit('categoryUpdated');
+        $this->dispatchBrowserEvent('toastr-update', [
+            'title' => 'Categoria actualizada',
+            'type' => 'success',
+            'message' => '¡Categoria actualizada éxitosamente!',
+            'timer' => 3000,
+        ]);
         return redirect()->route('categories');
-    }
-
-
-    public function render()
-    {
-        return view('livewire.admin.category-edit')
-            ->extends('layouts.app')
-            ->section('content');
     }
 }

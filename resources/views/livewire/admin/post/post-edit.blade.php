@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <h1 class="card-title">Actualizar publicación</h1>
-                    <a href="{{ route('posts.index') }}" class="btn btn-primary float-right bg-info">
+                    <a href="{{ route('posts.index') }}" class="btn btn-primary float-right bg-info border-0">
                         <i class="fas fa-arrow-left"></i>
                         <span>Regresar</span>
                     </a>

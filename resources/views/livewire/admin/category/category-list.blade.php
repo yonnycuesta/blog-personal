@@ -6,7 +6,7 @@
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Búsqueda por nombre">
+                            placeholder="Buscar por el nombre de la categoria o publicación.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -28,6 +28,7 @@
                         <tr>
 
                             <th scope="col">Nombre</th>
+                            <th scope="col">Nombre de la Publicación</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -35,8 +36,24 @@
                         <tr>
 
                             @foreach ($categories as $category)
-
                                 <td>{{ $category->name }}</td>
+                                <td>
+                                    @php
+                                        // Recorrer los posts relacionados con la categoría y mostrar su title
+                                       if ($category->posts->count() > 0) {
+                                        $posts = $category->posts;
+                                        $post_titles = [];
+                                        foreach ($posts as $post) {
+                                            $post_titles[] = $post->title;
+                                        }
+
+                                        $post_titles = implode('<br> ', $post_titles);
+                                        echo '<span class="badge badge-info">' . $post_titles . '</span>';
+                                       }else {
+                                        echo '<span class="badge badge-danger">Ningúna publicación asociada</span>';
+                                       }
+                                    @endphp
+                                </td>
                                 <td>
                                     <a href="{{ route('categories.edit', $category->id) }}"
                                         class="btn btn-sm btn-warning">
@@ -82,6 +99,18 @@
                     Livewire.emit('delete', event.detail.id);
                 }
             })
+        })
+    </script>
+    <script>
+        // Mostrar toastr
+        window.addEventListener('toastr-delete', event => {
+            toastr.warning(event.detail.message);
+        })
+    </script>
+    <script>
+        // Mostrar toastr
+        window.addEventListener('toastr-no-delete', event => {
+            toastr.error(event.detail.message);
         })
     </script>
 @endsection

@@ -2,11 +2,11 @@
     <div class="col-12 mt-4">
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title text-bold">Recursos |Listado</h3>
+                <h3 class="card-title text-bold">Imágenes |Listado</h3>
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Buscar por nombre y url del recurso o nombre de la publicación.">
+                            placeholder="Buscar por el nombre de la publicación.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="mt-2">
-                        <a href="{{ route('resources.create') }}" class="btn btn-primary btn-sm float-right">
+                        <a href="{{ route('galleries.create') }}" class="btn btn-primary btn-sm float-right">
                             <i class="fas fa-plus"></i>
                             Agregar nuevo
                         </a>
@@ -26,30 +26,37 @@
                 <table class="table table-hover text-nowrap">
                     <thead>
                         <tr>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Url o Enlace</th>
+                            <th scope="col">Imagen</th>
                             <th scope="col">Nombre de la Publicación</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            @foreach ($resources as $resource)
-                                <td>{{ $resource->name }}</td>
+                            @foreach ($galleries as $gallery)
+                                <td>
+                                    @if ($gallery->photo)
+                                        <img src="{{ asset($gallery->photo) }}"
+                                            alt="{{ $gallery->post->title ?? '' }}" class="img-fluid"
+                                            style="max-width: 120px; max-height: 120px;">
+                                    @else
+                                        <span class="badge badge-primary">No hay imagen</span>
+                                    @endif
+
+                                </td>
+                                <td>
+                                    {{ $gallery->post->title ?? '' }}
+                                </td>
+
                                 <td>
 
-                                    <a href="{{ $resource->url }}" class="text-muted" target="_blank">{{ $resource->url }}</a>
-                                </td>
-                                <td>
-                                    {{ $resource->post->title ?? 'Ninguna asociada' }}
-                                </td>
-                                <td>
-                                    <a href="{{ route('resources.edit', $resource->id) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ route('galleries.edit', $gallery->id) }}"
+                                        class="btn btn-sm btn-warning">
                                         <i class="fas fa-pencil-alt"></i>
                                         Editar
                                     </a>
 
-                                    <button type="button" wire:click="confirmDelete({{ $resource->id }})"
+                                    <button type="button" wire:click="confirmDelete({{ $gallery->id }})"
                                         class="btn btn-sm btn-danger">
                                         <i class="fas fa-trash"></i>
                                         Eliminar
@@ -62,7 +69,7 @@
             </div>
 
             <div class="card-footer">
-                {{ $resources->links() }}
+                {{ $galleries->links() }}
             </div>
         </div>
 
@@ -80,7 +87,7 @@
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Sí, quiero eliminarlo!',
+                confirmButtonText: 'Sí, quiero eliminarla!',
                 cancelButtonText: 'Cancelar'
             }).then((result) => {
                 if (result.isConfirmed) {
@@ -96,4 +103,3 @@
         })
     </script>
 @endsection
-

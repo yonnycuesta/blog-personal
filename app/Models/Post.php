@@ -54,4 +54,13 @@ class Post extends Model
     {
         return $this->hasMany(Module::class);
     }
+
+    /**
+     * Obtener las galerias del post.
+     */
+
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
 }

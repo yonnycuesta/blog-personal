@@ -31,7 +31,7 @@ class TestimonialList extends Component
                     ->orWhere('designation', 'like', '%' . $this->search . '%')
                     ->orWhere('description', 'like', '%' . $this->search . '%')
                     ->OrderBy('id', 'desc');
-            })->paginate($this->perPage),
+            })->paginate($this->perPage)->withQueryString(),
         ])->extends('layouts.app')->section('content');
     }
 

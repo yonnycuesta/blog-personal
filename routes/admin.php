@@ -7,9 +7,12 @@ use App\Http\Livewire\Admin\Aboutme\AboutShow;
 use App\Http\Livewire\Admin\Award\AwardCreate;
 use App\Http\Livewire\Admin\Award\AwardEdit;
 use App\Http\Livewire\Admin\Award\AwardList;
-use App\Http\Livewire\Admin\CategoryCreate;
-use App\Http\Livewire\Admin\CategoryEdit;
-use App\Http\Livewire\Admin\CategoryList;
+use App\Http\Livewire\Admin\Category\CategoryCreate;
+use App\Http\Livewire\Admin\Category\CategoryEdit;
+use App\Http\Livewire\Admin\Category\CategoryList;
+use App\Http\Livewire\Admin\Gallery\GalleryCreate;
+use App\Http\Livewire\Admin\Gallery\GalleryEdit;
+use App\Http\Livewire\Admin\Gallery\GalleryList;
 use App\Http\Livewire\Admin\Module\ModuleCreate;
 use App\Http\Livewire\Admin\Module\ModuleEdit;
 use App\Http\Livewire\Admin\Module\ModuleList;
@@ -83,8 +86,14 @@ Route::get('resources', ResourceList::class,)->name('resources.index');
 Route::get('resources/create', ResourceCreate::class,)->name('resources.create');
 Route::get('resources/edit/{resource}', ResourceEdit::class,)->name('resources.edit');
 
-// Módulos asociados a las publlicaciones
+// Módulos asociados a las publicaciones
 Route::get('modules', ModuleList::class,)->name('modules.index');
 Route::get('modules/create', ModuleCreate::class,)->name('modules.create');
 Route::get('modules/edit/{module}', ModuleEdit::class,)->name('modules.edit');
 Route::get('modules/show/{module}', [ModuleList::class, 'show'])->name('modules.show');
+
+// Galería de imágenes de las publicaciones
+
+Route::get('galleries', GalleryList::class,)->name('galleries.index');
+Route::get('galleries/create', GalleryCreate::class,)->name('galleries.create');
+Route::get('galleries/edit/{gallery}', GalleryEdit::class,)->name('galleries.edit');

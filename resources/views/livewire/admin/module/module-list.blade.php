@@ -6,7 +6,7 @@
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Titulo, subtitulo , contenido o publicación">
+                            placeholder="Buscar por el titulo, subtitulo, contenido del módulo o nombre de la publicación.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>

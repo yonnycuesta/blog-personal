@@ -25,7 +25,7 @@ class TagCreate extends Component
     }
 
     protected $rules = [
-        'name' => 'required|min:3|max:50',
+        'name' => 'required|min:3|max:50|unique:tags',
         'post_id' => 'numeric|nullable',
         'portfolio_id' => 'numeric|nullable',
     ];
@@ -34,9 +34,16 @@ class TagCreate extends Component
         'name.required' => 'El nombre es requerido',
         'name.min' => 'El nombre debe tener al menos 3 caracteres',
         'name.max' => 'El nombre debe tener máximo 50 caracteres',
+        'name.unique' => 'El nombre ya existe',
         'post_id.numeric' => 'El post debe ser un número',
         'portfolio_id.numeric' => 'El portfolio debe ser un número',
     ];
+     // Validación en tiempo real
+     public function updated($field)
+     {
+         $this->validateOnly($field, $this->rules, $this->messages);
+     }
+     
 
     public function limpiarCampos()
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin;
+namespace App\Http\Livewire\Admin\Category;
 
 use App\Models\Category;
 use Livewire\Component;
@@ -11,19 +11,20 @@ class CategoryCreate extends Component
 
     public function render()
     {
-        return view('livewire.admin.category-create')
+        return view('livewire.admin.category.category-create')
             ->extends('layouts.app')
             ->section('content');
     }
 
     protected $rules = [
-        'name' => 'required|min:3|max:25',
+        'name' => 'required|min:3|max:25|unique:categories',
     ];
 
     protected $messages = [
         'name.required' => 'El nombre es requerido',
         'name.min' => 'El nombre debe tener al menos 3 caracteres',
         'name.max' => 'El nombre debe tener máximo 25 caracteres',
+        'name.unique' => 'El nombre ya existe',
     ];
     // Limpiar el formulario
 
@@ -46,11 +47,12 @@ class CategoryCreate extends Component
         ]);
 
         $this->limpiarCampos();
-        // evento typo alert success
 
-        $this->dispatchBrowserEvent('toastr-success', [
+        $this->dispatchBrowserEvent('toastr-create', [
+            'title' => 'Categoria creada',
             'type' => 'success',
-            'message' => 'Categoría creada con éxito',
+            'message' => 'Categoria creada éxitosamente',
+            'timer' => 3000,
         ]);
     }
 }

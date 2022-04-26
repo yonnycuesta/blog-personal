@@ -33,7 +33,7 @@
                 <div class="card card-primary card-outline">
                     <div class="card-header">
                         <h3 class="card-title">About Me</h3>
-                        <a href="{{ route('aboutme.index') }}" class="btn btn-primary float-right bg-info">
+                        <a href="{{ route('aboutme.index') }}" class="btn btn-primary float-right bg-info border-0">
                             <i class="fas fa-arrow-left"></i>
                             <span>Regresar</span>
                         </a>
