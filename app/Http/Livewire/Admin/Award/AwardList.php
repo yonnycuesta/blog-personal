@@ -28,9 +28,8 @@ class AwardList extends Component
         return view('livewire.admin.award.award-list', [
             'awards' => Award::when($this->search, function ($query, $search) {
                 return $query->where('title', 'like', '%' . $this->search . '%')
-                    ->orWhere('quantity', 'like', '%' . $this->search . '%')
-                    ->OrderBy('id', 'desc');
-            })->paginate($this->perPage)->withQueryString(),
+                    ->orWhere('quantity', 'like', '%' . $this->search . '%');
+            })->OrderBy('id', 'desc')->paginate($this->perPage)->withQueryString(),
         ])->extends('layouts.app')->section('content');
     }
 

@@ -70,13 +70,16 @@ class PortfolioCreate extends Component
 
         $file_save = $this->photo ? 'storage/' . $this->photo->store('portfolios', 'public') : null;
 
+        // Formato de la fecha de creación
+        $date_created = $this->date_created ? date('j. F Y', strtotime($this->date_created)) : null;
+        
         Portfolio::create([
             'title' => $this->title,
             'description' => $this->description,
             'photo' => $file_save,
             'portf_client' => $this->portf_client,
             'portf_url' => $this->portf_url,
-            'date_created' => $this->date_created,
+            'date_created' => $date_created,
             'category_id' => $this->category_id,
         ]);
 

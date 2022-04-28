@@ -63,4 +63,5 @@ class Post extends Model
     {
         return $this->hasMany(Gallery::class);
     }
+
 }

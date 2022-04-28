@@ -10,9 +10,11 @@ use App\Http\Livewire\Admin\Award\AwardList;
 use App\Http\Livewire\Admin\Category\CategoryCreate;
 use App\Http\Livewire\Admin\Category\CategoryEdit;
 use App\Http\Livewire\Admin\Category\CategoryList;
+use App\Http\Livewire\Admin\Contact\ContactList;
 use App\Http\Livewire\Admin\Gallery\GalleryCreate;
 use App\Http\Livewire\Admin\Gallery\GalleryEdit;
 use App\Http\Livewire\Admin\Gallery\GalleryList;
+use App\Http\Livewire\Admin\Homedash\Dashboard;
 use App\Http\Livewire\Admin\Module\ModuleCreate;
 use App\Http\Livewire\Admin\Module\ModuleEdit;
 use App\Http\Livewire\Admin\Module\ModuleList;
@@ -34,12 +36,18 @@ use App\Http\Livewire\Admin\Tag\TagList;
 use App\Http\Livewire\Admin\Testimonial\TestimonialCreate;
 use App\Http\Livewire\Admin\Testimonial\TestimonialEdit;
 use App\Http\Livewire\Admin\Testimonial\TestimonialList;
+use App\Http\Livewire\Frontend\Home\Blog;
+use App\Http\Livewire\Frontend\Home\PortfolioDetails;
 use Illuminate\Support\Facades\Route;
 
 // Categorias
 Route::get('categories', CategoryList::class)->name('categories');
 Route::get('categories/create', CategoryCreate::class)->name('categories.create');
 Route::get('categories/edit/{category}', CategoryEdit::class)->name('categories.edit');
+
+// Contactos
+Route::get('contacts', ContactList::class)->name('contacts.index');
+Route::get('contacts/show/{contact}', [ContactList::class, 'show'])->name('contacts.show');
 
 // Sobre mi
 Route::get('aboutme', AboutList::class)->name('aboutme.index');
@@ -97,3 +105,7 @@ Route::get('modules/show/{module}', [ModuleList::class, 'show'])->name('modules.
 Route::get('galleries', GalleryList::class,)->name('galleries.index');
 Route::get('galleries/create', GalleryCreate::class,)->name('galleries.create');
 Route::get('galleries/edit/{gallery}', GalleryEdit::class,)->name('galleries.edit');
+
+// Dashboard
+Route::get('/dashboard', Dashboard::class)->name('dashboard');
+

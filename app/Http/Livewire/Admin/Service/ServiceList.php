@@ -28,9 +28,8 @@ class ServiceList extends Component
         return view('livewire.admin.service.service-list', [
             'services' => Service::when($this->search, function ($query, $search) {
                 return $query->where('name', 'like', '%' . $this->search . '%')
-                    ->orWhere('description', 'like', '%' . $this->search . '%')
-                    ->OrderBy('id', 'desc');
-            })->paginate($this->perPage)->withQueryString(),
+                    ->orWhere('description', 'like', '%' . $this->search . '%');
+            })->OrderBy('id', 'desc')->paginate($this->perPage)->withQueryString(),
         ])->extends('layouts.app')->section('content');
     }
 
