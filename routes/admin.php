@@ -36,8 +36,6 @@ use App\Http\Livewire\Admin\Tag\TagList;
 use App\Http\Livewire\Admin\Testimonial\TestimonialCreate;
 use App\Http\Livewire\Admin\Testimonial\TestimonialEdit;
 use App\Http\Livewire\Admin\Testimonial\TestimonialList;
-use App\Http\Livewire\Frontend\Home\Blog;
-use App\Http\Livewire\Frontend\Home\PortfolioDetails;
 use Illuminate\Support\Facades\Route;
 
 // Categorias

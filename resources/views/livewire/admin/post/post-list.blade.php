@@ -47,7 +47,7 @@
                                         echo $s . '...';
                                     @endphp
                                 </td>
-                            
+
                                 <td>
                                     @if ($post->photo)
                                         <img src="{{ asset($post->photo) }}" alt="{{ $post->title }}"

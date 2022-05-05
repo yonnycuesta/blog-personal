@@ -23,7 +23,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- My Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
@@ -61,12 +63,23 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="#contact">Contacto</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="login.html">Iniciar sesión</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="register.html">Crear cuenta</a>
-                </li>
+                @if (Route::has('frontend.login'))
+                    @auth
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('frontend.logout') }}">Cerrar sesión</a>
+                        </li>
+                    @else
+                        <li class="nav-item ">
+                            <a class="nav-link" href="{{ route('frontend.login') }}">Iniciar sesión</a>
+                        </li>
+                        @if (Route::has('frontend.create'))
+                            <li class="nav-item ">
+                                <a class="nav-link" href="{{ route('frontend.create') }}">Crear cuenta</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
+
             </ul>
         </div>
 
@@ -453,115 +466,137 @@
                                 </button>
                             </div>
                         </form>
+                    </div>
                 </div>
             </div>
+            <!-- Fin contact -->
+
         </div>
-        <!-- Fin contact -->
+        <footer class="border-top footer">
+            <div class="container">
+                <div class="row justify-content-center">
 
-    </div>
-    <footer class="border-top footer">
-        <div class="container">
-            <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <h5>NAVEGACIÓN</h5>
+                        <ul>
+                            <li>
+                                <a href="">Blog</a>
+                            </li>
+                            <li>
+                                <a href="">Sobre mi</a>
+                            </li>
+                            <li>
+                                <a href="">Servicios</a>
+                            </li>
+                            <li>
+                                <a href="">Portafolio</a>
+                            </li>
+                            <li>
+                                <a href="">Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
 
-                <div class="col-md-4">
-                    <h5>NAVEGACIÓN</h5>
-                    <ul>
-                        <li>
-                            <a href="">Blog</a>
-                        </li>
-                        <li>
-                            <a href="">Sobre mi</a>
-                        </li>
-                        <li>
-                            <a href="">Servicios</a>
-                        </li>
-                        <li>
-                            <a href="">Portafolio</a>
-                        </li>
-                        <li>
-                            <a href="">Blog</a>
-                        </li>
-                    </ul>
+                        <h5>SOPORTE</h5>
+                        <ul>
+                            <li>
+                                <a href="">Políticas de privacidad y seguridad</a>
+                            </li>
+                            <li>
+                                <a href="">Términos y condiciones</a>
+                            </li>
+                            <li>
+                                <a href="">Políticas de cookies</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>CONTACTO</h5>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Calle 14 # 89a - 86, Medellin - Antioquia, COL</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-phone"></i>
+                                    <span> (+57) 3116851031</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-envelope"></i>
+                                    <span> yocumo1998@gmail.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
-                <div class="col-md-4">
-
-                    <h5>SOPORTE</h5>
-                    <ul>
-                        <li>
-                            <a href="">Políticas de privacidad y seguridad</a>
-                        </li>
-                        <li>
-                            <a href="">Términos y condiciones</a>
-                        </li>
-                        <li>
-                            <a href="">Políticas de cookies</a>
-                        </li>
-
-                    </ul>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h5>CONTACTO</h5>
-                    <ul>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Calle 14 # 89a - 86, Medellin - Antioquia, COL</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-phone"></i>
-                                <span> (+57) 3116851031</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-envelope"></i>
-                                <span> yocumo1998@gmail.com</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
+                <div class="small text-center text-muted fst-italic">Copyright &copy; SNOW 2022</div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="#!">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="small text-center text-muted fst-italic">Copyright &copy; SNOW 2022</div>
-        </div>
-    </footer>
-    <!-- JavaScript -->
+        </footer>
+        <!-- JavaScript -->
+        <script src="{{ asset('theme/plugins/jquery/jquery.min.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+                integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
-    </script>
-    @livewireScripts
+        @if (Session::has('contact_added'))
+            <script>
+                toastr.success("{!! Session::get('contact_added') !!}");
+            </script>
+        @endif
+
+        @if (Session::has('user_login'))
+            <script>
+                toastr.success("{!! Session::get('user_login') !!}");
+            </script>
+        @endif
+
+        @if (Session::has('close_session'))
+            <script>
+                toastr.success("{!! Session::get('close_session') !!}");
+            </script>
+        @endif
+
+        @livewireScripts
 </body>
 
 </html>

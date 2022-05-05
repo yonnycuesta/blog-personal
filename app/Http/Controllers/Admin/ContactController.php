@@ -24,6 +24,8 @@ class ContactController extends Controller
         $contact->description = $request->input('description');
         $contact->save();
 
+        Session()->flash('contact_added', '¡Mensaje enviado correctamente!');
+
         return redirect()->route('home');
     }
 }
