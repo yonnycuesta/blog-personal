@@ -18,5 +18,6 @@ class Aboutme extends Model
         'photo',
         'designation',
         'profile',
+        'cvs',
     ];
 }

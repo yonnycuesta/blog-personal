@@ -50,6 +50,13 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="cvs" class="text-muted">Hoja de vida </label>
+                                    <input type="file" class="form-control-file form-control-sm" wire:model="cvs">
+                                    @error('cvs')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -66,6 +73,7 @@
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
+
                             </div>
                         </div>
                         <div class="row">

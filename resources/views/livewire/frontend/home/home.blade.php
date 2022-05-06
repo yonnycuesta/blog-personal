@@ -1,7 +1,3 @@
-<div>
-
-</div>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,12 +80,14 @@
                         <span class="text-subtitle">Y te doy la bienvenida a mi WEB</span>
                     </h2>
                     <!-- Botón descargar cv -->
-                    <a href="#" class="button is-primary is-outlined">
-                        <span class="icon">
-                            <i class="fas fa-download"></i>
-                        </span>
-                        <span>Descargar CV</span>
-                    </a>
+                    @foreach ($aboutme as $about)
+                        <a href="{{ asset($about->cvs) }}" target="_blank" class="button is-primary is-outlined">
+                            <span class="icon">
+                                <i class="fas fa-download"></i>
+                            </span>
+                            <span>Descargar CV</span>
+                        </a>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -453,115 +451,117 @@
                                 </button>
                             </div>
                         </form>
+                    </div>
                 </div>
             </div>
+            <!-- Fin contact -->
+
         </div>
-        <!-- Fin contact -->
+        <footer class="border-top footer">
+            <div class="container">
+                <div class="row justify-content-center">
 
-    </div>
-    <footer class="border-top footer">
-        <div class="container">
-            <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <h5>NAVEGACIÓN</h5>
+                        <ul>
+                            <li>
+                                <a href="">Blog</a>
+                            </li>
+                            <li>
+                                <a href="">Sobre mi</a>
+                            </li>
+                            <li>
+                                <a href="">Servicios</a>
+                            </li>
+                            <li>
+                                <a href="">Portafolio</a>
+                            </li>
+                            <li>
+                                <a href="">Blog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
 
-                <div class="col-md-4">
-                    <h5>NAVEGACIÓN</h5>
-                    <ul>
-                        <li>
-                            <a href="">Blog</a>
-                        </li>
-                        <li>
-                            <a href="">Sobre mi</a>
-                        </li>
-                        <li>
-                            <a href="">Servicios</a>
-                        </li>
-                        <li>
-                            <a href="">Portafolio</a>
-                        </li>
-                        <li>
-                            <a href="">Blog</a>
-                        </li>
-                    </ul>
+                        <h5>SOPORTE</h5>
+                        <ul>
+                            <li>
+                                <a href="">Políticas de privacidad y seguridad</a>
+                            </li>
+                            <li>
+                                <a href="">Términos y condiciones</a>
+                            </li>
+                            <li>
+                                <a href="">Políticas de cookies</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>CONTACTO</h5>
+                        <ul>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span>Calle 14 # 89a - 86, Medellin - Antioquia, COL</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-phone"></i>
+                                    <span> (+57) 3116851031</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="">
+                                    <i class="fas fa-envelope"></i>
+                                    <span> yocumo1998@gmail.com</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
-                <div class="col-md-4">
-
-                    <h5>SOPORTE</h5>
-                    <ul>
-                        <li>
-                            <a href="">Políticas de privacidad y seguridad</a>
-                        </li>
-                        <li>
-                            <a href="">Términos y condiciones</a>
-                        </li>
-                        <li>
-                            <a href="">Políticas de cookies</a>
-                        </li>
-
-                    </ul>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul class="list-inline text-center">
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fas fa-circle fa-stack-2x"></i>
+                                        <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <h5>CONTACTO</h5>
-                    <ul>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Calle 14 # 89a - 86, Medellin - Antioquia, COL</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-phone"></i>
-                                <span> (+57) 3116851031</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="">
-                                <i class="fas fa-envelope"></i>
-                                <span> yocumo1998@gmail.com</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-
+                <div class="small text-center text-muted fst-italic">Copyright &copy; SNOW 2022</div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="#!">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-instagram fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fas fa-circle fa-stack-2x"></i>
-                                    <i class="fab fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="small text-center text-muted fst-italic">Copyright &copy; SNOW 2022</div>
-        </div>
-    </footer>
-    <!-- JavaScript -->
+        </footer>
+        <!-- JavaScript -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
-    </script>
-    @livewireScripts
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+        </script>
+
+        @yield('scripts')
+        @livewireScripts
 </body>
 
 </html>

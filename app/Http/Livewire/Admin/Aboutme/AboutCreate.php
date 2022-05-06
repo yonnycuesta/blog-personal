@@ -10,7 +10,7 @@ class AboutCreate extends Component
 {
     use WithFileUploads;
 
-    public $fullname, $email, $phone, $profile, $age, $address, $photo, $designation;
+    public $fullname, $email, $phone, $profile, $age, $address, $photo, $designation, $cvs;
     public function render()
     {
         return view('livewire.admin.aboutme.about-create')
@@ -27,6 +27,7 @@ class AboutCreate extends Component
         'address' => 'min:3|max:50|nullable',
         'designation' => 'min:3|max:50|nullable',
         'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|nullable',
+        'cvs' => 'mimes:pdf,svg,|nullable',
     ];
 
     protected $messages = [
@@ -48,6 +49,8 @@ class AboutCreate extends Component
         'designation.max' => 'La designación debe tener máximo 50 caracteres',
         'photo.image' => 'La foto debe ser una imagen',
         'photo.mimes' => 'La foto debe ser una imagen válida',
+        'cvs.mimes' => 'El cv debe ser un archivo válido',
+
     ];
 
     public function limpiarCampos()
@@ -66,9 +69,10 @@ class AboutCreate extends Component
         $validationData = $this->validate();
 
         $file_save = $this->photo ? 'storage/' . $this->photo->store('aboutme', 'public') : null;
-
+        $cv_save = $this->cvs ? 'storage/' . $this->cvs->store('aboutme', 'public') : null;
         Aboutme::create([
             'photo' => $file_save,
+            'cvs' => $cv_save,
         ] + $validationData);
 
         $this->limpiarCampos();

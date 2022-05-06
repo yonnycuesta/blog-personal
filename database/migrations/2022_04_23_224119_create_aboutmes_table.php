@@ -23,6 +23,7 @@ return new class extends Migration
             $table->text('photo')->nullable()->comment('Foto');
             $table->string('designation', 50)->nullable()->nullable()->comment('Cargo');
             $table->text('profile')->nullable()->comment('Perfil');
+            $table->text('cvs')->nullable()->comment('CV');
             $table->timestamps();
             $table->engine = 'InnoDB';
         });

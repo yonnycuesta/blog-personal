@@ -229,7 +229,7 @@ hr {
   padding: 0px;
 }
 .services .card .card-icon {
-  margin-top: 10px;
+  margin-top: 15px;
 }
 .services .card .card-icon span {
   font-size: 4rem;
@@ -243,6 +243,7 @@ hr {
   margin: 0px 10% 15px 10%;
   color: rgb(94, 92, 92);
   font-size: 12px;
+
 }
 
 /** fin servicios */
