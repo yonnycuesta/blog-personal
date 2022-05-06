@@ -6,6 +6,7 @@ use App\Models\Award;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Brian2694\Toastr\Facades\Toastr;
+
 class AwardList extends Component
 {
     // Librerias
@@ -54,6 +55,5 @@ class AwardList extends Component
             'status' => 'success',
             'timer' => 3000,
         ]);
-    
     }
 }

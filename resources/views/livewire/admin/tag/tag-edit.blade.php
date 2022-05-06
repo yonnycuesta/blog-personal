@@ -3,7 +3,7 @@
         <div class="col-md-12 mt-4">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h1 class="card-title">Crear etiqueta</h1>
+                    <h1 class="card-title">Actualizar etiqueta</h1>
                     <a href="{{ route('tags.index') }}" class="btn btn-primary float-right bg-info border-0">
                         <i class="fas fa-arrow-left"></i>
                         <span>Regresar</span>
@@ -89,12 +89,10 @@
             })
         })
     </script>
-@endsection
-
-@section('scripts')
-    <script>
+     <script>
         window.addEventListener('toastr-update', event => {
             toastr.info(event.detail.message);
         })
     </script>
 @endsection
+

@@ -55,7 +55,6 @@
     </div>
     </div>
 
-
     @section('scripts')
         <script>
             window.addEventListener('toastr-create', event => {

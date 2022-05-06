@@ -70,7 +70,7 @@
     </div>
 </div>
 
-@section('js')
+@section('scripts')
     <script>
         $(document).ready(function() {
             $('.select2').select2()
@@ -80,9 +80,6 @@
             })
         })
     </script>
-@endsection
-
-@section('scripts')
     <script>
         window.addEventListener('toastr-create', event => {
             toastr.success(event.detail.message);

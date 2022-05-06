@@ -40,18 +40,18 @@
                                 <td>
                                     @php
                                         // Recorrer los posts relacionados con la categoría y mostrar su title
-                                       if ($category->posts->count() > 0) {
-                                        $posts = $category->posts;
-                                        $post_titles = [];
-                                        foreach ($posts as $post) {
-                                            $post_titles[] = $post->title;
-                                        }
+                                        if ($category->posts->count() > 0) {
+                                            $posts = $category->posts;
+                                            $post_titles = [];
+                                            foreach ($posts as $post) {
+                                                $post_titles[] = $post->title;
+                                            }
 
-                                        $post_titles = implode('<br> ', $post_titles);
-                                        echo '<span class="badge badge-info">' . $post_titles . '</span>';
-                                       }else {
-                                        echo '<span class="badge badge-danger">Ningúna publicación asociada</span>';
-                                       }
+                                            $post_titles = implode('<br> ', $post_titles);
+                                            echo '<span class="badge badge-info">' . $post_titles . '</span>';
+                                        } else {
+                                            echo '<span class="badge badge-danger">Ningúna publicación asociada</span>';
+                                        }
                                     @endphp
                                 </td>
                                 <td>
@@ -102,15 +102,14 @@
         })
     </script>
 
-@endsection
 
-@section('scripts')
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-delete', event => {
             toastr.warning(event.detail.message);
         })
     </script>
+
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-no-delete', event => {

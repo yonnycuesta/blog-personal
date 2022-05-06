@@ -100,9 +100,6 @@
             })
         })
     </script>
-@endsection
-
-@section('scripts')
     <script>
         window.addEventListener('toastr-delete', event => {
             toastr.warning(event.detail.message);

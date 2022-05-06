@@ -89,12 +89,11 @@
             })
         })
     </script>
-@endsection
-
-@section('scripts')
-    <script>
+     <script>
         window.addEventListener('toastr-create', event => {
             toastr.success(event.detail.message);
         })
     </script>
 @endsection
+
+
