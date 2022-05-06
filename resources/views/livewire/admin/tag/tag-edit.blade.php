@@ -69,7 +69,7 @@
     </div>
 </div>
 
-@section('js')
+@section('scripts')
     <script>
         $(document).ready(function() {
             $('.select2').select2()

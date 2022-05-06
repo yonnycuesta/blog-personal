@@ -101,13 +101,10 @@
             })
         })
     </script>
-<<<<<<< HEAD
 
 @endsection
 
-@section('js')
-=======
->>>>>>> parent of c8f87b6 (Instalación admin template)
+@section('scripts')
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-delete', event => {
