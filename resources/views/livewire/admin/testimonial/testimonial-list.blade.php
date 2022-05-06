@@ -81,7 +81,7 @@
     </div>
 </div>
 
-@section('scripts')
+@section('js')
     <script>
         // Eliminar
         window.addEventListener('confirm-delete', event => {
@@ -101,7 +101,9 @@
             })
         })
     </script>
+@endsection
 
+@section('js')
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-delete', event => {

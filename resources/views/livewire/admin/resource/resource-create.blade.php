@@ -15,7 +15,8 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name" class="text-muted">Nombre</label>
-                                    <input type="text" class="form-control form-control-sm" wire:model="name" placeholder="adminLte">
+                                    <input type="text" class="form-control form-control-sm" wire:model="name"
+                                        placeholder="adminLte">
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -61,7 +62,7 @@
     </div>
 </div>
 
-@section('scripts')
+@section('js')
     <script>
         $(document).ready(function() {
             $('.select2').select2()
@@ -71,6 +72,9 @@
             })
         })
     </script>
+@endsection
+
+@section('scripts')
     <script>
         window.addEventListener('toastr-create', event => {
             toastr.success(event.detail.message);

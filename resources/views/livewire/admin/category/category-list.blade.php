@@ -122,7 +122,7 @@
 
 @endsection
 
-@section('scripts')
+@section('js')
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-delete', event => {

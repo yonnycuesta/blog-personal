@@ -25,8 +25,8 @@
                                 <div wire:ignore>
                                     <div class="form-group">
                                         <label for="portfolio" class="text-muted">Portafolios</label>
-                                        <select class="form-control form-control-sm select2" wire:model="tag.portfolio_id"
-                                            name="tag.portfolio_id">
+                                        <select class="form-control form-control-sm select2"
+                                            wire:model="tag.portfolio_id" name="tag.portfolio_id">
                                             <option value="">Seleccione un proyecto</option>
                                             @foreach ($portfolios as $portfolio)
                                                 <option value="{{ $portfolio->id }}">{{ $portfolio->title }}
@@ -43,8 +43,8 @@
                                 <div wire:ignore>
                                     <div class="form-group">
                                         <label for="post" class="text-muted">Publicación</label>
-                                        <select class="form-control form-control-sm select2-blue" wire:model="tag.post_id"
-                                            name="tag.post_id">
+                                        <select class="form-control form-control-sm select2-blue"
+                                            wire:model="tag.post_id" name="tag.post_id">
                                             <option value="">Seleccione una publicación</option>
                                             @foreach ($posts as $post)
                                                 <option value="{{ $post->id }}">{{ $post->title }}</option>
@@ -69,7 +69,7 @@
     </div>
 </div>
 
-@section('scripts')
+@section('js')
     <script>
         $(document).ready(function() {
             $('.select2').select2()
@@ -89,6 +89,9 @@
             })
         })
     </script>
+@endsection
+
+@section('scripts')
     <script>
         window.addEventListener('toastr-update', event => {
             toastr.info(event.detail.message);

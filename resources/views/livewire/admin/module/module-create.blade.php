@@ -59,7 +59,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <button type="submit" class="btn btn-primary">Guardar</button>
                     </form>
                 </div>
@@ -71,7 +70,7 @@
     </div>
 </div>
 
-@section('scripts')
+@section('js')
     <script>
         $(document).ready(function() {
             $('.select2').select2()
@@ -81,6 +80,9 @@
             })
         })
     </script>
+@endsection
+
+@section('scripts')
     <script>
         window.addEventListener('toastr-create', event => {
             toastr.success(event.detail.message);

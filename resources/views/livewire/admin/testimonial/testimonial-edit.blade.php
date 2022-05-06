@@ -57,7 +57,7 @@
 </div>
 
 
-@section('scripts')
+@section('js')
     <script>
         window.addEventListener('toastr-update', event => {
             toastr.info(event.detail.message);

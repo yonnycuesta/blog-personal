@@ -408,6 +408,27 @@ return [
                 ],
             ],
         ],
+        'Toastr' => [
+            'active' => true,
+            'files' => [
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.bootcss.com/jquery/2.2.4/jquery.min.js',
+                ],
+                [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.bootcss.com/toastr.js/latest/js/toastr.min.js'
+                ]
+            ],
+        ],
+
         'Pace' => [
             'active' => false,
             'files' => [

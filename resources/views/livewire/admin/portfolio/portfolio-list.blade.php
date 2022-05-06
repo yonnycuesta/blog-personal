@@ -85,7 +85,7 @@
     </div>
 </div>
 
-@section('scripts')
+@section('js')
     <script>
         // Eliminar
         window.addEventListener('confirm-delete', event => {
