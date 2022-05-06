@@ -23,10 +23,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
-        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     <link rel="stylesheet" href="/assets/css/styles.css">
 
 </head>
@@ -129,9 +125,33 @@
                         </div>
                     @endforeach
                 @else
-                    <h4 class="title">
-                        No hay módulos
-                    </h4>
+                    <div class="content-module">
+                        <ul>
+                            <li>
+                                <h6></h6>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Qui dolores amet vel,
+                                    dolor atque similique minima animi vitae minus, quia placeat officiis cumque
+                                    consequatur laboriosam. Ratione libero dolor magni nostrum!
+                                    Facilis corrupti at, hic iste beatae voluptatem eaque suscipit recusandae ab aut
+                                    doloribus ipsum molestias alias laborum fuga explicabo inventore fugit. Ducimus
+                                    deserunt illo sequi velit explicabo doloribus officia praesentium.
+                                    Provident similique reiciendis autem tempora, eos veritatis? Ad porro dolore a,
+                                    nesciunt necessitatibus adipisci esse ipsam ex dignissimos perferendis vel officia
+                                    voluptatum velit, aliquam, mollitia numquam. Pariatur voluptate blanditiis
+                                    asperiores?
+                                    Ex, tenetur. Tempore, ex quaerat! Excepturi sequi iusto quae officiis impedit
+                                    incidunt voluptatem corporis minus, corrupti animi, voluptates vitae aliquam
+                                    laboriosam harum, ducimus fuga voluptas dignissimos repellat explicabo. Esse,
+                                    obcaecati.
+                                    Nesciunt aliquam molestias provident quas saepe eius quos veniam ducimus vitae ex
+                                    hic culpa, delectus libero officia assumenda expedita rerum, et nam? Vel magni amet
+                                    consequuntur, at alias accusantium possimus.
+                                </p>
+                            </li>
+
+                        </ul>
+                    </div>
                 @endif
 
 
@@ -178,46 +198,50 @@
         <div class="section-comment">
             <div class="container">
                 <div class="row">
-                    @foreach ($post->comments as $comment)
-                        <div class="col-md-3">
-                            <ul>
-                                <li>
-                                    <span>
-                                        {{ $comment->datetime_create }}
-                                    </span>
-                                </li>
-                                <li>
-                                    <span>
-                                        Por: {{ $comment->name }}
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-9 section-comment-text">
-                            <p>
-                                {{ $comment->description }}
-                            </p>
-                        </div>
-                    @endforeach
+                    <div class="col-md-3">
+                        <ul>
+                            <li>
+                                <span>
+                                    02/04/2022 12:00:03 pm
+                                </span>
+                            </li>
+                            <li>
+                                <span>
+                                    Por: Lorem ipsum dolor sit amet
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-9 section-comment-text">
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam aut, ullam
+                            deleniti voluptas dolorum officiis fugiat vitae dolor eum sint molestiae velit nam maiores
+                            beatae maxime quidem voluptatum quae?
+                            Dolor sequi odit voluptas veritatis aliquid voluptatem, saepe minima doloribus aperiam
+                            excepturi illo, tempora similique assumenda ducimus eum laborum cum quas corporis nemo quod
+                            consectetur? Officiis qui accusamus sed earum?
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="section-form-comment">
             <div class="container">
+
                 <div class="form-comment">
-                   
-                    <form action="{{ route('comments.store') }}" method="POST">
-                        @csrf
+                    <form>
                         <div class="form-group">
-                            <input type="text" name="name" class="form-control" placeholder="Nombre">
+                            <input type="text" class="form-control" placeholder="Nombre">
                         </div>
                         <div class="form-group">
-                            <textarea name="description" cols="30" rows="4" class="form-control" placeholder="Mensaje"></textarea>
+
+                            <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Mensaje"></textarea>
                         </div>
                         <div class="form-group">
-                            <input type="hidden" name="post_id" value="{{ $post->id }}">
-                            <button type="submit" class="btn btn-primary">Comentar</button>
+                            <button class="btn btn-primary">
+                                Comentar
+                            </button>
                         </div>
                     </form>
                 </div>
@@ -329,22 +353,9 @@
     </footer>
     <!-- JavaScript -->
 
-    <!-- jQuery -->
-    <script src="{{ asset('theme/plugins/jquery/jquery.min.js') }}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
-        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    @if (Session::has('comment_added'))
-        <script>
-            toastr.success("{!! Session::get('comment_added') !!}");
-        </script>
-    @endif
 </body>
 
 </html>

@@ -6,7 +6,7 @@
                 <div class="mt-5">
                     <div class="input-group input-group-sm">
                         <input type="text" name="search" wire:model="search" class="form-control float-right"
-                            placeholder="Buscar por el nombre de la categoria, publicación o proyecto.">
+                            placeholder="Buscar por el nombre de la categoria o publicación.">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-default">
                                 <i class="fas fa-search"></i>
@@ -29,7 +29,6 @@
 
                             <th scope="col">Nombre</th>
                             <th scope="col">Nombre de la Publicación</th>
-                            <th scope="col">Nombre del Portafolio</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
@@ -41,35 +40,18 @@
                                 <td>
                                     @php
                                         // Recorrer los posts relacionados con la categoría y mostrar su title
-                                        if ($category->posts->count() > 0) {
-                                            $posts = $category->posts;
-                                            $post_titles = [];
-                                            foreach ($posts as $post) {
-                                                $post_titles[] = $post->title;
-                                            }
-
-                                            $post_titles = implode('<br> ', $post_titles);
-                                            echo '<span class="badge badge-info">' . $post_titles . '</span>';
-                                        } else {
-                                            echo '<span class="badge badge-danger">Ningúna publicación asociada</span>';
+                                       if ($category->posts->count() > 0) {
+                                        $posts = $category->posts;
+                                        $post_titles = [];
+                                        foreach ($posts as $post) {
+                                            $post_titles[] = $post->title;
                                         }
-                                    @endphp
-                                </td>
-                                <td>
-                                    @php
-                                        // Recorrer los posts relacionados con la categoría y mostrar su title
-                                        if ($category->portfolios->count() > 0) {
-                                            $portfolios = $category->portfolios;
-                                            $portfolio_titles = [];
-                                            foreach ($portfolios as $portfolio) {
-                                                $portfolio_titles[] = $portfolio->title;
-                                            }
 
-                                            $portfolio_titles = implode('<br> ', $portfolio_titles);
-                                            echo '<span class="badge badge-info">' . $portfolio_titles . '</span>';
-                                        } else {
-                                            echo '<span class="badge badge-danger">Ningúna portafolio asociado</span>';
-                                        }
+                                        $post_titles = implode('<br> ', $post_titles);
+                                        echo '<span class="badge badge-info">' . $post_titles . '</span>';
+                                       }else {
+                                        echo '<span class="badge badge-danger">Ningúna publicación asociada</span>';
+                                       }
                                     @endphp
                                 </td>
                                 <td>
@@ -99,7 +81,7 @@
     </div>
 </div>
 
-@section('js')
+@section('scripts')
     <script>
         // Eliminar
         window.addEventListener('confirm-delete', event => {
@@ -119,10 +101,13 @@
             })
         })
     </script>
+<<<<<<< HEAD
 
 @endsection
 
 @section('js')
+=======
+>>>>>>> parent of c8f87b6 (Instalación admin template)
     <script>
         // Mostrar toastr
         window.addEventListener('toastr-delete', event => {
@@ -135,4 +120,4 @@
             toastr.error(event.detail.message);
         })
     </script>
-@stop
+@endsection

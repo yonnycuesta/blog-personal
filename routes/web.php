@@ -34,14 +34,3 @@ Route::get('portfolio/{portfolio}', [PortfolioDetails::class, 'mount'])->name('p
 Route::get('blog/{post}', [BlogDetails::class, 'mount'])->name('blog');
 
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
-
-// Store comments
-Route::post('comments/store', [App\Http\Controllers\CommentController::class, 'store'])->name('comments.store');
-
-
-// Routes Auth
-Route::get('frontend/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('frontend.login');
-Route::post('frontend/login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('frontend.login.submit');
-Route::get('frontend/create', [App\Http\Controllers\Auth\LoginController::class, 'showCreateForm'])->name('frontend.create');
-Route::post('frontend/store', [App\Http\Controllers\Auth\LoginController::class, 'store'])->name('frontend.create.submit');
-Route::get('frontend/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('frontend.logout');

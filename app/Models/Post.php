@@ -64,12 +64,4 @@ class Post extends Model
         return $this->hasMany(Gallery::class);
     }
 
-    /**
-     * Obtener los comentarios del post.
-     */
-
-    public function comments()
-    {
-        return $this->hasMany(Comment::class);
-    }
 }

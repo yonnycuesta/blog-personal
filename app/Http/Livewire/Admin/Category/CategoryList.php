@@ -33,12 +33,9 @@ class CategoryList extends Component
                 return $query->where('name', 'like', '%' . $this->search . '%')
                     ->orWhereHas('posts', function ($query) {
                         return $query->where('title', 'like', '%' . $this->search . '%');
-                    })
-                    ->orWhereHas('portfolios', function ($query) {
-                        return $query->where('title', 'like', '%' . $this->search . '%');
                     });
             })->OrderBy('id', 'desc')->paginate($this->perPage)->withQueryString(),
-        ])->extends('adminlte::page')->section('content');
+        ])->extends('layouts.app')->section('content');
     }
 
     // Confirmar eliminación
@@ -61,7 +58,7 @@ class CategoryList extends Component
         /* si esta relacionada con algun post mostrar un mensaje de error
         */
 
-        if ($category->posts->isEmpty() && $category->portfolios->isEmpty()) {
+        if ($category->posts->isEmpty()) {
             $category->delete();
             $this->dispatchBrowserEvent('toastr-delete', [
                 'title' => 'Categoría eliminada',
@@ -73,7 +70,7 @@ class CategoryList extends Component
             $this->dispatchBrowserEvent('toastr-no-delete', [
                 'title' => 'Categoría no eliminada',
                 'type' => 'error',
-                'message' => 'La categoría no puede ser eliminada porque esta relacionada con algun post o portafolio',
+                'message' => 'La categoría no puede ser eliminada porque esta relacionada con algun post',
                 'timer' => 3000,
             ]);
         }
