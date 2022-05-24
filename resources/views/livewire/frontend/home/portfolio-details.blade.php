@@ -35,33 +35,47 @@
 
         </div>
         <div id="navbarMenu" class="navbar-menu">
+
             <input type="checkbox" id="burger">
             <label for="burger"><i class="fas fa-bars"></i></label>
+
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="#blog">Blog</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Sobre mi</a>
+                    <a class="nav-link" href="#profile-contact">Sobre mi</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Servicios</a>
+                    <a class="nav-link" href="#services">Servicios</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Portafolio</a>
+                    <a class="nav-link" href="#portfolio">Portafolio</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="#contact">Contacto</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Iniciar sesión</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Crear cuenta</a>
-                </li>
+                @if (Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Panel Administrador') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar sesión') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
+                    </li>
+                @endif
             </ul>
         </div>
 
@@ -175,20 +189,21 @@
                     <h5>NAVEGACIÓN</h5>
                     <ul>
                         <li>
-                            <a href="">Blog</a>
+                            <a href="#blog">Blog</a>
                         </li>
                         <li>
-                            <a href="">Sobre mi</a>
+                            <a href="#contact">Contacto</a>
                         </li>
                         <li>
-                            <a href="">Servicios</a>
+                            <a href="#profile-contact">Sobre mi</a>
                         </li>
                         <li>
-                            <a href="">Portafolio</a>
+                            <a href="#services">Servicios</a>
                         </li>
                         <li>
-                            <a href="">Blog</a>
+                            <a href="#portfolio">Portafolio</a>
                         </li>
+
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -265,11 +280,14 @@
             <div class="small text-center text-muted fst-italic">Copyright &copy; SNOW 2022</div>
         </div>
     </footer>
-    <!-- JavaScript -->
+        <!-- JavaScript -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
+
+
+@endif
 </body>
 
 </html>

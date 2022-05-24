@@ -11,7 +11,7 @@ class AboutEdit extends Component
     use WithFileUploads;
 
     public Aboutme $about;
-    public $photo;
+    public $photo, $cvs;
 
     public function mount(Aboutme $about)
     {
@@ -32,7 +32,8 @@ class AboutEdit extends Component
         'about.age' => 'required|min:1|max:2',
         'about.address' => 'min:3|max:50|nullable',
         'about.designation' => 'min:3|max:50|nullable',
-        'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|nullable'
+        'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|nullable',
+        'cvs' => 'mimes:pdf,svg,|nullable'
     ];
 
     protected $messages = [
@@ -54,6 +55,8 @@ class AboutEdit extends Component
         'about.designation.max' => 'La designación debe tener máximo 50 caracteres',
         'photo.image' => 'La foto debe ser una imagen',
         'photo.mimes' => 'La foto debe ser una imagen válida',
+        'cvs.mimes' => 'El CV debe ser un archivo válido',
+
     ];
 
     public function update()
@@ -69,6 +72,7 @@ class AboutEdit extends Component
             'photo' => $this->photo ? 'storage/' . $this->photo->store('aboutme', 'public') : $this->about->photo,
             'designation' => $this->about->designation,
             'profile' => $this->about->profile,
+            'cvs' => $this->cvs ? 'storage/' . $this->cvs->store('aboutme', 'public') : $this->about->cvs,
         ]);
 
         return redirect()->route('aboutme.index');

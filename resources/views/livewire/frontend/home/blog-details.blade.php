@@ -23,6 +23,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link rel="stylesheet" href="/assets/css/styles.css">
 
 </head>
@@ -35,33 +40,48 @@
 
         </div>
         <div id="navbarMenu" class="navbar-menu">
+
             <input type="checkbox" id="burger">
             <label for="burger"><i class="fas fa-bars"></i></label>
+
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Blog</a>
+                    <a class="nav-link" href="#blog">Blog</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Sobre mi</a>
+                    <a class="nav-link" href="#profile-contact">Sobre mi</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Servicios</a>
+                    <a class="nav-link" href="#services">Servicios</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Portafolio</a>
+                    <a class="nav-link" href="#portfolio">Portafolio</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Contacto</a>
+                    <a class="nav-link" href="#contact">Contacto</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Iniciar sesión</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="#">Crear cuenta</a>
-                </li>
+                @if (Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link"
+                            href="{{ route('dashboard') }}">{{ __('Panel Administrador') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar sesión') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
+                    </li>
+                @endif
             </ul>
         </div>
 
@@ -198,54 +218,56 @@
         <div class="section-comment">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-3">
-                        <ul>
-                            <li>
-                                <span>
-                                    02/04/2022 12:00:03 pm
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    Por: Lorem ipsum dolor sit amet
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-md-9 section-comment-text">
-                        <p>
-                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus quibusdam aut, ullam
-                            deleniti voluptas dolorum officiis fugiat vitae dolor eum sint molestiae velit nam maiores
-                            beatae maxime quidem voluptatum quae?
-                            Dolor sequi odit voluptas veritatis aliquid voluptatem, saepe minima doloribus aperiam
-                            excepturi illo, tempora similique assumenda ducimus eum laborum cum quas corporis nemo quod
-                            consectetur? Officiis qui accusamus sed earum?
-                        </p>
-                    </div>
+                    @if ($post->comments)
+                        @foreach ($post->comments as $comment)
+                            <div class="col-md-3">
+                                <ul>
+                                    <li>
+                                        <span>
+                                            {{ $comment->datetime_created }}
+                                        </span>
+                                    </li>
+                                    <li>
+                                        <span>
+                                            Por: {{ $comment->name }}
+                                        </span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-9 section-comment-text">
+                                <p>
+                                    {{ $comment->description }}
+                                </p>
+                            </div>
+                        @endforeach
+                    @else
+                    @endif
+
+
                 </div>
             </div>
         </div>
 
         <div class="section-form-comment">
             <div class="container">
-
                 <div class="form-comment">
-                    <form>
+                    <form method="POST" action="{{ route('comment.store') }}">
+                        <!-- comentario al post actual -->
+                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                        @csrf
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Nombre">
+                            <input type="text" name="username" class="form-control" placeholder="Nombre">
                         </div>
                         <div class="form-group">
-
-                            <textarea name="" id="" cols="30" rows="4" class="form-control" placeholder="Mensaje"></textarea>
+                            <textarea name="description" id="" cols="30" rows="4" class="form-control" placeholder="Mensaje"></textarea>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary">
                                 Comentar
                             </button>
                         </div>
                     </form>
                 </div>
-
             </div>
         </div>
 
@@ -261,20 +283,21 @@
                     <h5>NAVEGACIÓN</h5>
                     <ul>
                         <li>
-                            <a href="">Blog</a>
+                            <a href="#blog">Blog</a>
                         </li>
                         <li>
-                            <a href="">Sobre mi</a>
+                            <a href="#contact">Contacto</a>
                         </li>
                         <li>
-                            <a href="">Servicios</a>
+                            <a href="#profile-contact">Sobre mi</a>
                         </li>
                         <li>
-                            <a href="">Portafolio</a>
+                            <a href="#services">Servicios</a>
                         </li>
                         <li>
-                            <a href="">Blog</a>
+                            <a href="#portfolio">Portafolio</a>
                         </li>
+
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -351,11 +374,25 @@
             <div class="small text-center text-muted fst-italic">Copyright &copy; SNOW 2022</div>
         </div>
     </footer>
-    <!-- JavaScript -->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+        integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js"
+        integrity="sha512-eHo1pysFqNmmGhQ8DnYZfBVDlgFSbv3rxS0b/5+Eyvgem/xk0068cceD8GTlJOZsUrtjANIrFhhlwmsL1K3PKg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"
+        integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    @yield('scripts')
+
+    @if (Session::has('comment-success'))
+        <script>
+            toastr.success("{{ Session::get('comment-success') }}");
+        </script>
+    @endif
 </body>
 
 </html>

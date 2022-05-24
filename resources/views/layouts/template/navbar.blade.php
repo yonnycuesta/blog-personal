@@ -7,20 +7,32 @@
          </li>
      </ul>
      <ul class="navbar-nav ml-auto">
+
          <li class="nav-item dropdown">
              <a class="nav-link" data-toggle="dropdown" href="#">
                  <i class="fa-solid fa-gears"></i>
              </a>
+
+
              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                  <span class="dropdown-item dropdown-header">Configuración</span>
                  <div class="dropdown-divider"></div>
-                 <a href="#" class="dropdown-item">
-                     <i class="fas fa-user mr-2"></i> Cerrar sesión
-                 </a>
-                 <div class="dropdown-divider"></div>
-                 <a href="{{ route('home') }}" class="dropdown-item">
-                     <i class="fas fa-arrow-left mr-2"></i> Página principal
-                 </a>
+
+                 @if (Auth::check())
+                     <a href="{{ route('logout') }}" class="dropdown-item">
+                         <i class="fas fa-sign-out-alt"></i>
+                         <span>Cerrar sesión</span>
+                     </a>
+                     <a href="{{ route('home') }}" class="dropdown-item">
+                         <i class="fas fa-home"></i>
+                         <span>Página Principal</span>
+                     </a>
+                 @else
+                     <a href="{{ route('login') }}" class="dropdown-item">
+                         <i class="fas fa-sign-in-alt"></i>
+                         <span>Iniciar sesión</span>
+                     </a>
+                 @endif
              </div>
          </li>
      </ul>

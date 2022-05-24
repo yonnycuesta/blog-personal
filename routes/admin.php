@@ -36,76 +36,77 @@ use App\Http\Livewire\Admin\Tag\TagList;
 use App\Http\Livewire\Admin\Testimonial\TestimonialCreate;
 use App\Http\Livewire\Admin\Testimonial\TestimonialEdit;
 use App\Http\Livewire\Admin\Testimonial\TestimonialList;
-use App\Http\Livewire\Frontend\Home\Blog;
-use App\Http\Livewire\Frontend\Home\PortfolioDetails;
 use Illuminate\Support\Facades\Route;
 
-// Categorias
-Route::get('categories', CategoryList::class)->name('categories');
-Route::get('categories/create', CategoryCreate::class)->name('categories.create');
-Route::get('categories/edit/{category}', CategoryEdit::class)->name('categories.edit');
 
-// Contactos
-Route::get('contacts', ContactList::class)->name('contacts.index');
-Route::get('contacts/show/{contact}', [ContactList::class, 'show'])->name('contacts.show');
+Route::middleware('auth')->group(function () {
+    // Categorias
+    Route::get('categories', CategoryList::class)->name('categories');
+    Route::get('categories/create', CategoryCreate::class)->name('categories.create');
+    Route::get('categories/edit/{category}', CategoryEdit::class)->name('categories.edit');
 
-// Sobre mi
-Route::get('aboutme', AboutList::class)->name('aboutme.index');
-Route::get('aboutme/create', AboutCreate::class)->name('aboutme.create');
-Route::get('aboutme/edit/{about}', AboutEdit::class)->name('aboutme.edit');
-Route::get('aboutme/details/{about}', AboutShow::class)->name('aboutme.details');
+    // Contactos
+    Route::get('contacts', ContactList::class)->name('contacts.index');
+    Route::get('contacts/show/{contact}', [ContactList::class, 'show'])->name('contacts.show');
 
-// Logros
-Route::get('awards', AwardList::class)->name('awards.index');
-Route::get('awards/create', AwardCreate::class)->name('awards.create');
-Route::get('awards/edit/{award}', AwardEdit::class)->name('awards.edit');
+    // Sobre mi
+    Route::get('aboutme', AboutList::class)->name('aboutme.index');
+    Route::get('aboutme/create', AboutCreate::class)->name('aboutme.create');
+    Route::get('aboutme/edit/{about}', AboutEdit::class)->name('aboutme.edit');
+    Route::get('aboutme/details/{about}', AboutShow::class)->name('aboutme.details');
 
-// Servicios
-Route::get('services', ServiceList::class)->name('services.index');
-Route::get('services/create', ServiceCreate::class)->name('services.create');
-Route::get('services/edit/{service}', ServiceEdit::class)->name('services.edit');
-Route::get('services/show/{service}', [ServiceList::class, 'show'])->name('services.show');
+    // Logros
+    Route::get('awards', AwardList::class)->name('awards.index');
+    Route::get('awards/create', AwardCreate::class)->name('awards.create');
+    Route::get('awards/edit/{award}', AwardEdit::class)->name('awards.edit');
 
-// Testimonios
-Route::get('testimonials', TestimonialList::class)->name('testimonials.index');
-Route::get('testimonials/create', TestimonialCreate::class)->name('testimonials.create');
-Route::get('testimonals/edit/{testimonial}', TestimonialEdit::class)->name('testimonials.edit');
-Route::get('testimonals/show/{testimonial}', [TestimonialList::class, 'show'])->name('testimonials.show');
+    // Servicios
+    Route::get('services', ServiceList::class)->name('services.index');
+    Route::get('services/create', ServiceCreate::class)->name('services.create');
+    Route::get('services/edit/{service}', ServiceEdit::class)->name('services.edit');
+    Route::get('services/show/{service}', [ServiceList::class, 'show'])->name('services.show');
 
-// Publicaciones
-Route::get('posts', PostList::class,)->name('posts.index');
-Route::get('posts/create', PostCreate::class,)->name('posts.create');
-Route::get('posts/edit/{post}', PostEdit::class,)->name('posts.edit');
-Route::get('posts/show/{post}', [PostList::class, 'show'])->name('posts.show');
+    // Testimonios
+    Route::get('testimonials', TestimonialList::class)->name('testimonials.index');
+    Route::get('testimonials/create', TestimonialCreate::class)->name('testimonials.create');
+    Route::get('testimonals/edit/{testimonial}', TestimonialEdit::class)->name('testimonials.edit');
+    Route::get('testimonals/show/{testimonial}', [TestimonialList::class, 'show'])->name('testimonials.show');
 
-// Portafolios
-Route::get('portfolios', PortfolioList::class,)->name('portfolios.index');
-Route::get('portfolios/create', PortfolioCreate::class,)->name('portfolios.create');
-Route::get('portfolios/edit/{portfolio}', PortfolioEdit::class,)->name('portfolios.edit');
-Route::get('portfolios/show/{portfolio}', [PortfolioList::class, 'show'])->name('portfolios.show');
+    // Publicaciones
+    Route::get('posts', PostList::class,)->name('posts.index');
+    Route::get('posts/create', PostCreate::class,)->name('posts.create');
+    Route::get('posts/edit/{post}', PostEdit::class,)->name('posts.edit');
+    Route::get('posts/show/{post}', [PostList::class, 'show'])->name('posts.show');
 
-// Etiquetas
-Route::get('tags', TagList::class,)->name('tags.index');
-Route::get('tags/create', TagCreate::class,)->name('tags.create');
-Route::get('tags/edit/{tag}', TagEdit::class,)->name('tags.edit');
+    // Portafolios
+    Route::get('portfolios', PortfolioList::class,)->name('portfolios.index');
+    Route::get('portfolios/create', PortfolioCreate::class,)->name('portfolios.create');
+    Route::get('portfolios/edit/{portfolio}', PortfolioEdit::class,)->name('portfolios.edit');
+    Route::get('portfolios/show/{portfolio}', [PortfolioList::class, 'show'])->name('portfolios.show');
 
-// Recursos
-Route::get('resources', ResourceList::class,)->name('resources.index');
-Route::get('resources/create', ResourceCreate::class,)->name('resources.create');
-Route::get('resources/edit/{resource}', ResourceEdit::class,)->name('resources.edit');
+    // Etiquetas
+    Route::get('tags', TagList::class,)->name('tags.index');
+    Route::get('tags/create', TagCreate::class,)->name('tags.create');
+    Route::get('tags/edit/{tag}', TagEdit::class,)->name('tags.edit');
 
-// Módulos asociados a las publicaciones
-Route::get('modules', ModuleList::class,)->name('modules.index');
-Route::get('modules/create', ModuleCreate::class,)->name('modules.create');
-Route::get('modules/edit/{module}', ModuleEdit::class,)->name('modules.edit');
-Route::get('modules/show/{module}', [ModuleList::class, 'show'])->name('modules.show');
+    // Recursos
+    Route::get('resources', ResourceList::class,)->name('resources.index');
+    Route::get('resources/create', ResourceCreate::class,)->name('resources.create');
+    Route::get('resources/edit/{resource}', ResourceEdit::class,)->name('resources.edit');
 
-// Galería de imágenes de las publicaciones
+    // Módulos asociados a las publicaciones
+    Route::get('modules', ModuleList::class,)->name('modules.index');
+    Route::get('modules/create', ModuleCreate::class,)->name('modules.create');
+    Route::get('modules/edit/{module}', ModuleEdit::class,)->name('modules.edit');
+    Route::get('modules/show/{module}', [ModuleList::class, 'show'])->name('modules.show');
 
-Route::get('galleries', GalleryList::class,)->name('galleries.index');
-Route::get('galleries/create', GalleryCreate::class,)->name('galleries.create');
-Route::get('galleries/edit/{gallery}', GalleryEdit::class,)->name('galleries.edit');
+    // Galería de imágenes de las publicaciones
 
-// Dashboard
-Route::get('/dashboard', Dashboard::class)->name('dashboard');
+    Route::get('galleries', GalleryList::class,)->name('galleries.index');
+    Route::get('galleries/create', GalleryCreate::class,)->name('galleries.create');
+    Route::get('galleries/edit/{gallery}', GalleryEdit::class,)->name('galleries.edit');
 
+    // Dashboard
+    Route::get('/dashboard', Dashboard::class)->name('dashboard');
+
+});

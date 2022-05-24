@@ -20,6 +20,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">
 
+    <!-- Toastr -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"
+        integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- My Styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/styles.css') }}">
 
@@ -57,12 +61,24 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="#contact">Contacto</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="login.html">Iniciar sesión</a>
-                </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="register.html">Crear cuenta</a>
-                </li>
+                @if (Auth::check())
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('dashboard') }}">{{ __('Panel Administrador') }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Cerrar sesión') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                @else
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
+                    </li>
+                @endif
             </ul>
         </div>
 
@@ -465,20 +481,21 @@
                         <h5>NAVEGACIÓN</h5>
                         <ul>
                             <li>
-                                <a href="">Blog</a>
+                                <a href="#blog">Blog</a>
                             </li>
                             <li>
-                                <a href="">Sobre mi</a>
+                                <a href="#contact">Contacto</a>
                             </li>
                             <li>
-                                <a href="">Servicios</a>
+                                <a href="#profile-contact">Sobre mi</a>
                             </li>
                             <li>
-                                <a href="">Portafolio</a>
+                                <a href="#services">Servicios</a>
                             </li>
                             <li>
-                                <a href="">Blog</a>
+                                <a href="#portfolio">Portafolio</a>
                             </li>
+
                         </ul>
                     </div>
                     <div class="col-md-4">
@@ -556,12 +573,24 @@
             </div>
         </footer>
         <!-- JavaScript -->
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
-        </script>
-
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/popper.min.js"
+                integrity="sha512-eHo1pysFqNmmGhQ8DnYZfBVDlgFSbv3rxS0b/5+Eyvgem/xk0068cceD8GTlJOZsUrtjANIrFhhlwmsL1K3PKg=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"
+                integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         @yield('scripts')
         @livewireScripts
+
+        @if (Session::has('contact-success'))
+            <script>
+                toastr.success("{{ Session::get('contact-success') }}");
+            </script>
+        @endif
 </body>
 
 </html>
