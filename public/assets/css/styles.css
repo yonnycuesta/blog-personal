@@ -929,6 +929,9 @@ hr {
   .portafolio-content-content {
     padding: 0px;
   }
+  .title .text-title {
+    font-size: 3.5rem;
+  }
 }
 
 @media (max-width: 375px) {
@@ -941,6 +944,9 @@ hr {
   }
   .portafolio-content-content {
     padding: 0px;
+  }
+  .title .text-title {
+    font-size: 2em;
   }
 }
 @media (max-width: 320px) {
@@ -957,6 +963,9 @@ hr {
   .portafolio .card .card-text a {
     margin-left: 80px;
   }
+  .title .text-title {
+    font-size: 1.5em;
+  }
 }
 
 @media (max-width: 768px) {
@@ -965,6 +974,12 @@ hr {
   }
   .services .card .card-text {
     margin: 0px 5% 10px 5%;
+  }
+  .hero{
+    margin-top: 30px;
+  }
+  .navbar ul li {
+      margin:0px;
   }
 }
 
