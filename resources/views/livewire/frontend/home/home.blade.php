@@ -357,13 +357,14 @@
                                     <div class="media-info">
                                         <span class="fas fa-user"></span><br>
                                         <h6>
-                                            {{ $testimonial->name }}
+                                           Yonny
                                         </h6>
                                     </div>
 
                                     <div class="media-content">
                                         <p class="card-text">
-                                            {{ $testimonial->description }}
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quae
+                                            voluptatum. Quisquam, quae voluptatum.
                                         </p>
                                     </div>
                                 </div>

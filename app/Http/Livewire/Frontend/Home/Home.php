@@ -23,13 +23,12 @@ class Home extends Component
         $posts = Post::all();
 
         // Testimonios de manera aleatoria de acuerdo al id
-        $testimonials = Testimonial::all();
+        /*$testimonials = Testimonial::all();
         $testimonials_id = $testimonials->pluck('id')->toArray();
         $random = rand(0, count($testimonials_id) - 1);
         $testimonial = $testimonials_id[$random];
-        $testimonial = Testimonial::find($testimonial);
+        $testimonial = Testimonial::find($testimonial);*/
 
-
-        return view('livewire.frontend.home.home', compact('aboutme', 'services','awards','portfolios','posts', 'testimonial'));
+        return view('livewire.frontend.home.home', compact('aboutme', 'services','awards','portfolios','posts'));
     }
 }
