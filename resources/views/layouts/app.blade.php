@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Panel| Administrador</title>
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -12,7 +11,6 @@
     <link rel="stylesheet" href="{{ asset('theme/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
     @livewireStyles
 </head>
 
@@ -26,7 +24,6 @@
 
             @include('layouts.template.sidebar')
         </aside>
-
         <div class="content-wrapper">
             <section class="content">
                 <div class="container-fluid">
@@ -34,7 +31,6 @@
                 </div>
             </section>
         </div>
-
         <footer class="main-footer">
             @include('layouts.template.footer')
         </footer>
